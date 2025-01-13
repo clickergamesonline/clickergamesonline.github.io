@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <!-- Font Awesome CDN -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+        <div class="main-container"> <!-- Start of grid container -->
+    <header>
+        <div id="search-overlay" class="search-overlay">
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button id="close-search" onclick="toggleSearchOverlay()">✖</button>
+    </div>
+</div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMenu()">☰</div>
+
+    <!-- Logo (Left) -->
+    <div class="logo">
+        <img src="logo.png" alt="Eggy Car Logo">
+        <span>Eggy Car</span>
+    </div>
+
+    <!-- Navigation Menu (Center) -->
+    <nav id="nav-menu">
+        <a href="#">Home</a>
+        <a href="#">Car</a>
+        <a href="Category/Action/Index.html">Action</a>
+        <a href="./Category/Skill/index.html">Skill</a>
+        <a href="#">Shooting</a>
+        <a href="#">Sport</a>
+        <a href="#">Idle</a>
+    </nav>
+
+    <!-- Right Container (Search + Dark Mode) -->
+    <div class="right-container">
+        <div class="search-container">
+           <!-- Search Icon Button -->
+<button class="search-icon" onclick="toggleSearchOverlay()">
+    <i class="fas fa-search"></i>
+</button>
+
+        </div>
+        <button class="dark-mode-toggle">🌙</button>
+
+    </div>
+</header>
+    
+<!-- Scrolling Games Section -->
+<div class="scrolling-games">
+    <div class="scrolling-wrapper">
+        <div class="scrolling-game-card" onclick="loadGame('Game 1', 'game1.html')">
+            <img src="game1-thumbnail.jpg" alt="Game 1">
+            <div class="scrolling-game-title">Game 1</div>
+        </div>
+        <div class="scrolling-game-card" onclick="loadGame('Game 2', 'game2.html')">
+            <img src="game2-thumbnail.jpg" alt="Game 2">
+            <div class="scrolling-game-title">Game 2</div>
+        </div>
+        <div class="scrolling-game-card" onclick="loadGame('Game 3', 'game3.html')">
+            <img src="game3-thumbnail.jpg" alt="Game 3">
+            <div class="scrolling-game-title">Game 3</div>
+        </div>
+        <div class="scrolling-game-card" onclick="loadGame('Game 4', 'game4.html')">
+            <img src="game4-thumbnail.jpg" alt="Game 4">
+            <div class="scrolling-game-title">Game 4</div>
+        </div>
+        <div class="scrolling-game-card" onclick="loadGame('Game 5', 'game5.html')">
+            <img src="game5-thumbnail.jpg" alt="Game 5">
+            <div class="scrolling-game-title">Game 5</div>
+        </div>
+    </div>
+</div>
+    
+<div class="menu-overlay" id="menu-overlay">
+    <button class="close-menu" onclick="toggleMenu()">&times;</button>
+    <nav class="mobile-nav" id="mobile-nav">
+        <a href="#">Home</a>
+        <a href="#">Car</a>
+        <a href="#">Skill</a>
+        <a href="#">Action</a>
+        <a href="#">Shooting</a>
+        <a href="#">Sport</a>
+        <a href="#">Idle</a>
+    </nav>
+</div>
+
+
+    <!-- Left Section -->
+    <div class="game-section" id="left-game-section">
+        <div class="grid-section">
+            <div class="game-card" onclick="loadGame('Fireboy and Watergirl 1: Forest Temple', 'game/game1.html')">
+                <img src="images/War Robots Battle Mech Arena-512x384.jpg" alt="Game 1">
+                <div class="game-title">Fireboy and Watergirl 1: Forest Temple </div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 3', 'game3.html')">
+                <img src="game3-thumbnail.jpg" alt="Game 3">
+                <div class="game-title">Game 3</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 4', 'game4.html')">
+                <img src="game4-thumbnail.jpg" alt="Game 4">
+                <div class="game-title">Game 4</div>
+            </div>
+        </div>
+        <div class="ad-container">Advertisement</div>
+        <div class="grid-section">
+            <div class="game-card" onclick="loadGame('Game 5', 'game5.html')">
+                <img src="game5-thumbnail.jpg" alt="Game 5">
+                <div class="game-title">Game 5</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 6', 'game6.html')">
+                <img src="game6-thumbnail.jpg" alt="Game 6">
+                <div class="game-title">Game 6</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 7', 'game7.html')">
+                <img src="game7-thumbnail.jpg" alt="Game 7">
+                <div class="game-title">Game 7</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 8', 'game8.html')">
+                <img src="game8-thumbnail.jpg" alt="Game 8">
+                <div class="game-title">Game 8</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Center Section -->
+    <div id="iframe-wrapper">
+        <div id="iframe-container">
+            <iframe id="game-frame" src="game.html" allowfullscreen></iframe>
+        </div>
+        <div class="game-info">
+            <div id="game-title">Select a Game</div>
+            <div class="button-container">
+                <button onclick="toggleFullscreen()">&#x26F6;</button>
+                <button id="like-button" onclick="toggleLike()">👍 <span id="like-count">0</span></button>
+                <button id="dislike-button" onclick="toggleDislike()">👎 <span id="dislike-count">0</span></button>
+                 <button id="download-button" onclick="addToHomeScreen()">⬇️ Add to Home</button>
+            </div>
+        </div>
+         <!-- Game Description and Instructions -->
+    <div id="game-info-section">
+        <h3>Game Description</h3>
+        <p id="game-description">Select a game to see its description and instructions here.</p>
+        <h3>Instructions</h3>
+        <p id="game-instructions">Instructions will appear once a game is selected.</p>
+    </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="game-section" id="right-game-section">
+        <div class="grid-section">
+            <div class="game-card" onclick="loadGame('Game 1', 'game1.html')">
+                <img src="game1-thumbnail.jpg" alt="Game 1">
+                <div class="game-title">Game 1</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 3', 'game3.html')">
+                <img src="game3-thumbnail.jpg" alt="Game 3">
+                <div class="game-title">Game 3</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 4', 'game4.html')">
+                <img src="game4-thumbnail.jpg" alt="Game 4">
+                <div class="game-title">Game 4</div>
+            </div>
+        </div>
+        <div class="ad-container">Advertisement</div>
+        <div class="grid-section">
+            <div class="game-card" onclick="loadGame('Game 5', 'game5.html')">
+                <img src="game5-thumbnail.jpg" alt="Game 5">
+                <div class="game-title">Game 5</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 6', 'game6.html')">
+                <img src="game6-thumbnail.jpg" alt="Game 6">
+                <div class="game-title">Game 6</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 7', 'game7.html')">
+                <img src="game7-thumbnail.jpg" alt="Game 7">
+                <div class="game-title">Game 7</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 8', 'game8.html')">
+                <img src="game8-thumbnail.jpg" alt="Game 8">
+                <div class="game-title">Game 8</div>
+            </div>
+    </div>
+         </div> <!-- End of grid container -->
+            </div> <!-- End of main grid container -->
+
+ <!-- 50 Fifty Games Section -->
+    <div class="fifty-games-section">
+        <h2>50 Fifty Games</h2>
+        <div class="grid-section">
+            <div class="game-card" onclick="loadGame('Game 1', 'game1.html')">
+                <img src="game1-thumbnail.jpg" alt="Game 1">
+                <div class="game-title">Game 1</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div><div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            <div class="game-card" onclick="loadGame('Game 2', 'game2.html')">
+                <img src="game2-thumbnail.jpg" alt="Game 2">
+                <div class="game-title">Game 2</div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
+

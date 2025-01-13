@@ -1,0 +1,977 @@
+body {
+    display: flex; /* Use flex instead of grid for main layout */
+    flex-direction: column; /* Stack sections vertically */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+.main-container {
+    display: grid;
+    grid-template-rows: auto 1fr; /* Header + Content */
+    grid-template-columns: 1fr 3fr 1fr; /* Desktop: Left - Center - Right */
+    gap: 0;
+    flex-grow: 1;
+}
+
+/* Responsive Grid for Mobile */
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr; /* Single column layout */
+        grid-template-rows: auto auto auto; /* Stack rows vertically */
+    }
+
+    .game-section {
+        height: auto;
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+}
+
+/* Dark Mode Body */
+body.dark-mode {
+    background-color: #0d1117; /* Dark gray background */
+    color: #c9d1d9; /* Lighter text color for readability */
+}
+
+
+/* Scrolling Games Section */
+.scrolling-games {
+    grid-column: 1 / -1; /* Spanning across all columns */
+    overflow: hidden;
+    width: 100%; /* Full width to match parent */
+    background-color: #1a1a3d; /* Consistent dark background */
+    padding: 10px 0; /* Adds padding for spacing */
+    box-sizing: border-box;
+    display: flex; /* Aligns within flex layout */
+    justify-content: center; /* Centers content */
+    position: relative; /* Aligns with parent grid */
+}
+
+/* Wrapper for scroll effect */
+.scrolling-wrapper {
+    display: flex;
+    animation: scroll 20s linear infinite; /* Continuous scrolling */
+    align-items: center; /* Center items vertically */
+    gap: 30px; /* Increase the gap between items */
+}
+
+/* Individual Game Cards */
+.scrolling-game-card {
+    flex: 0 0 auto;
+    width: 80px; /* Consistent width */
+    height: 80px; /* Set height equal to width to make it square */
+    text-align: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.scrolling-game-card:hover {
+    transform: scale(1.1); /* Hover effect */
+}
+
+/* Images in Cards */
+.scrolling-game-card img {
+    width: 100%; /* Full width of container */
+    height: 80%; /* Adjust height to maintain aspect ratio */
+    object-fit: cover; /* Ensures the image covers the space properly */
+    border-radius: 4px;
+}
+
+/* Titles in Cards */
+.scrolling-game-title {
+    color: white;
+    margin-top: 5px; /* Adjust spacing from image */
+    font-size: 12px;
+}
+
+
+
+/* Animation for scrolling */
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Adjust Padding for Larger Screens */
+@media (min-width: 1024px) {
+    .scrolling-games {
+        padding: 15px 0; /* Larger padding for PC */
+    }
+
+    .scrolling-game-card {
+        width: 150px; /* Increase size */
+        margin-right: 30px; /* Larger gap for PC */
+    }
+
+    .scrolling-game-title {
+        font-size: 14px; /* Larger text for visibility */
+    }
+}
+
+       /* Header Configuration */
+header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space out elements */
+    background-color:  #0d1117;
+    color: #c9d1d9;
+    padding: 10px 20px;
+}
+/* Dark Mode Header */
+body.dark-mode header {
+    background-color: #0d1117; /* Match body background */
+    color: white; /* White text for contrast */
+}
+/* Logo (Left) */
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Navigation Menu (Center) */
+header nav {
+    flex-grow: 1; /* Take remaining space */
+    display: flex;
+    justify-content: center; /* Center the navigation menu */
+    gap: 20px; /* Space between links */
+}
+
+/* Navigation Links */
+header nav a {
+    color: #c9d1d9; /* Bright white text for visibility */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Slightly larger font size */
+    font-weight: 600; /* Bold text for emphasis */
+    padding: 8px 12px; /* Padding for clickable area */
+    border-radius: 5px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for effects */
+}
+
+/* Hover Effect */
+header nav a:hover {
+    background-color: #58a6ff;
+    color: #0d1117; /* Hover matches home page */
+}
+
+/* Active Link Style (Optional) */
+header nav a.active {
+    background-color: #58a6ff;
+    color: #0d1117;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    header nav {
+        display: none; /* Hide desktop nav for mobile */
+    }
+
+    header .hamburger-menu {
+        display: block; /* Show hamburger menu for mobile */
+    }
+
+    .menu-overlay nav a {
+        padding: 15px; /* Larger padding for easier touch targets */
+        color: white; /* Maintain visibility in overlay */
+    }
+}
+
+
+/* Right Container (Search + Dark Mode) */
+header .right-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Gap between search and dark mode buttons */
+}
+
+/* Search Button */
+header .search-container {
+    display: flex;
+    align-items: center;
+}
+/* Dark Mode Button */
+header .dark-mode-toggle {
+    background: none; /* Remove visible background */
+    border: none; /* Remove borders */
+    padding: 5px 10px;
+    border-radius: 4px; /* Rounded corners for consistency */
+    cursor: pointer;
+    color: white; /* White text for light/dark compatibility */
+    font-weight: bold;
+    font-size: 20px; /* Adjust font/icon size */
+    transition: color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Hover Effect */
+header .dark-mode-toggle:hover {
+    color: #ffcc00; /* Add a golden glow on hover */
+}
+
+
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    header nav {
+        display: none; /* Hide navigation on small screens */
+    }
+
+    header .right-container {
+        justify-content: flex-end; /* Right-align buttons on mobile */
+    }
+}
+
+        #iframe-container {
+            position: relative;
+            padding: 20px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        body.dark-mode #iframe-container {
+            background-color: #2c2c2c;
+        }
+
+        iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #game-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+        }
+
+        body.dark-mode #game-title {
+            color: #fff;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .button-container button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button-container button:hover {
+            background-color: #444;
+        }
+
+      body.dark-mode .button-container button {
+    background-color: #58a6ff; /* Highlight button */
+    color: #0d1117;
+}
+
+body.dark-mode .button-container button:hover {
+    background-color: #1f6feb; /* Slightly darker hover */
+    color: #ffffff;
+}
+
+        .game-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        body.dark-mode .game-section {
+            background-color: #333;
+        }
+
+        .grid-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Responsive columns */
+    gap: 15px; /* Consistent spacing */
+}
+
+/* Adjust layout for smaller screens */
+@media (max-width: 768px) {
+    .grid-section {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Smaller cards for mobile */
+    }
+}
+
+
+        .ad-container {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #555;
+            border-radius: 8px;
+        }
+
+       body.dark-mode .ad-container {
+    background-color: #161b22; /* Match dark mode */
+    color: #c9d1d9;
+}
+
+   /* Game Card Styling */
+.game-card {
+    position: relative; /* Allows absolute positioning of the title */
+    overflow: hidden; /* Ensures the image doesn't overflow */
+    border-radius: 8px; /* Smooth rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+    cursor: pointer;
+    width: 150px; /* Fixed dimensions */
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align title at the bottom */
+    align-items: center;
+    background-color: #333; /* Default card background */
+    transition: transform 0.3s ease; /* Smooth scaling on hover */
+}
+
+/* Title Styling */
+.game-card .game-title {
+    position: absolute; /* Overlay the image */
+    bottom: 0;
+    width: 100%; /* Full width of the card */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+    color: white; /* Bright text for contrast */
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px 0;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease; /* Fade-in on hover */
+}
+
+/* Card Image Styling */
+.game-card img {
+    width: 100%; /* Full width of the card */
+    height: 100%; /* Full height */
+    object-fit: cover; /* Ensure proper scaling without distortion */
+    border-radius: 8px; /* Match the card's rounded corners */
+}
+
+/* Hover Effects */
+.game-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.game-card:hover .game-title {
+    opacity: 1; /* Make title visible on hover */
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .game-card {
+    background-color: #161b22; /* Match dark mode background */
+    color: #c9d1d9; /* Text color for dark mode */
+}
+
+body.dark-mode .game-card .game-title {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent light background */
+    color: #ffffff; /* Adjust text for dark mode */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .game-card {
+        width: 120px; /* Smaller card size for mobile */
+        height: 120px;
+    }
+
+    .game-card img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .game-title {
+        font-size: 12px; /* Smaller title font */
+    }
+}
+
+
+        body.dark-mode .game-title {
+            color: #ddd;
+        }
+
+        /* Scrollbar styling */
+        .game-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .game-section::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 4px;
+        }
+
+        .game-section::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            body {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+
+            #iframe-container {
+                order: 2;
+            }
+
+            .game-section {
+                order: 1;
+                height: auto;
+                padding: 15px;
+            }
+
+            iframe {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .ad-container {
+                height: 150px;
+                font-size: 14px;
+            }
+
+            iframe {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .game-section {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .grid-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .ad-container {
+                height: 120px;
+                font-size: 12px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+@media (max-width: 768px) {
+    header nav {
+        display: none; /* Hide desktop nav */
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger button */
+    }
+}
+
+/* Hide search bar by default on mobile */
+@media (max-width: 768px) {
+    #search-bar {
+        display: none; /* Hidden by default */
+    }
+
+    .search-container.active #search-bar {
+        display: block; /* Show when the 'active' class is toggled */
+    }
+
+  /* Search Icon Styling */
+.search-icon {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.search-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffcc00;
+}
+
+
+/* Ensure consistency across views */
+@media (min-width: 768px) {
+    .search-icon {
+        background: none !important; /* Ensure background stays removed on PC view */
+    }
+}
+
+
+
+    .search-container input {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        width: 150px; /* Adjust the size of input field */
+    }
+}
+/* Hamburger Menu Button */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+    color: white;
+}
+
+/* Close Menu Button */
+.close-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Ensure top-right position */
+    font-size: 36px;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Mobile Navigation Overlay */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Initially hidden */
+    width: 75%;
+    height: 100%;
+    padding: 0; /* Ensure no padding */
+    background-color: #1a1a3d;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.menu-overlay.show {
+    left: 0; /* Slide-in effect */
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.mobile-nav a {
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.mobile-nav a:hover {
+    background-color: #444;
+}
+
+/* Show Hamburger Button for Mobile */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    header nav {
+        display: none; /* Hide main nav */
+    }
+}
+/* Search Overlay Styles */
+.search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+.search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Search Box Styling */
+.search-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 60px;
+    width: 60%; /* Adjust width for mobile */
+    position: relative; /* Required for proper button positioning */
+}
+
+/* Input Field */
+.search-box input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+}
+
+/* Close Button Styling */
+#close-search {
+    color: purple; /* Purple color */
+    font-size: 30px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: absolute; /* Absolute position relative to the search-box */
+    right: 10px; /* Aligns button to the right */
+}
+@media (max-width: 768px) {
+    .search-box {
+        width: 80%; /* Make it take more width on mobile */
+    }
+
+    #close-search {
+        font-size: 24px; /* Slightly smaller icon for mobile */
+    }
+}
+@media (max-width: 768px) {
+    header .search-container {
+        gap: 5px !important; /* Consistent on mobile too */
+    }
+}
+/* Game Info Section */
+#game-info-section {
+    margin-top: 15px; /* Add spacing from buttons */
+    padding: 15px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Full width of the iframe-wrapper */
+}
+
+body.dark-mode #game-info-section {
+    background-color: #161b22; /* Match dark card color */
+    color: #c9d1d9;
+}
+
+body.dark-mode #game-info-section h3 {
+    color: #58a6ff; /* Highlighted headings */
+}
+
+body.dark-mode #game-info-section p {
+    color: #c9d1d9; /* Light text */
+}
+
+
+#game-info-section h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+body.dark-mode #game-info-section h3 {
+    color: white;
+}
+
+#game-info-section p {
+    margin: 0 0 10px;
+    line-height: 1.6;
+    color: #555;
+}
+
+body.dark-mode #game-info-section p {
+    color: #ddd;
+}
+/* 50 Fifty Games Section */
+.fifty-games-section {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #f4f4f4; /* Light mode background */
+    border-top: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* Dark Mode Background */
+body.dark-mode .fifty-games-section {
+    background-color: #0d1117; /* Match home dark theme */
+    border-top: 1px solid #21262d; /* Softer border */
+}
+
+body.dark-mode .fifty-games-section h2 {
+    color: #c9d1d9; /* Match heading text */
+}
+
+/* Game Cards in Fifty Section */
+body.dark-mode .fifty-games-section .game-card {
+    background-color: #161b22; /* Dark card background */
+    color: #c9d1d9;
+}
+
+/* Hover Effect */
+body.dark-mode .fifty-games-section .game-card:hover {
+    background-color: #58a6ff;
+    color: #0d1117;
+}
+
+
+/* Title Styling */
+.fifty-games-section h2 {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Dark Mode Title Styling */
+body.dark-mode .fifty-games-section h2 {
+    color: white; /* Adjust title color */
+}
+
+/* Grid Layout for Cards */
+.fifty-games-section .grid-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+/* Individual Game Cards */
+.fifty-games-section .game-card {
+    padding: 15px;
+    background-color: #fff; /* Light mode card background */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dark Mode Game Cards */
+body.dark-mode .fifty-games-section .game-card {
+    background-color: #444; /* Dark mode card background */
+    color: white; /* Dark mode text color */
+}
+
+/* Hover Effect */
+.fifty-games-section .game-card:hover {
+    transform: scale(1.05);
+}
+
+/* Image Styling */
+.fifty-games-section .game-card img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Dark Mode Text Adjustments */
+body.dark-mode .fifty-games-section .game-card .game-title {
+    color: #ddd; /* Light text for dark mode */
+}
+
+/* Hover Effect for Scrolling Games */
+.scrolling-game-card {
+    position: relative; /* Ensure title positioning works */
+    overflow: hidden; /* Prevent content overflow */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.scrolling-game-card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.scrolling-game-card .scrolling-game-title {
+    position: absolute; /* Overlay the image */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    color: white; /* Text color */
+    text-align: center;
+    padding: 5px 0; /* Padding inside the title box */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth fade-in */
+}
+
+.scrolling-game-card:hover .scrolling-game-title {
+    opacity: 1; /* Show title on hover */
+}
+
+/* Hover Effect for Fifty Games */
+.fifty-games-section .game-card {
+    position: relative; /* Ensure title positioning works */
+    overflow: hidden; /* Prevent content overflow */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.fifty-games-section .game-card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.fifty-games-section .game-card .game-title {
+    position: absolute; /* Overlay the image */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    color: white; /* Text color */
+    text-align: center;
+    padding: 5px 0; /* Padding inside the title box */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth fade-in */
+}
+
+.fifty-games-section .game-card:hover .game-title {
+    opacity: 1; /* Show title on hover */
+}
+/* Download Button */
+#download-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#download-button:hover {
+    background-color: #0056b3;
+}
+/* Action Games Section */
+.action-games-section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f4; /* Optional background color */
+}
+
+/* Grid Section for Game Cards */
+.action-games-section .grid-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive grid layout */
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center align grid if necessary */
+}
+
+/* Individual Game Cards */
+.action-games-section .game-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+    cursor: pointer;
+    width: 150px; /* Fixed dimensions for cards */
+    height: 150px;
+    background-color: #333; /* Default card background */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align title at the bottom */
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Game Card Hover Effect */
+.action-games-section .game-card:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* More prominent shadow on hover */
+}
+
+/* Game Card Image */
+.action-games-section .game-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure proper scaling without distortion */
+    border-radius: 8px; /* Match the card's rounded corners */
+}
+
+/* Game Card Title */
+.action-games-section .game-card .game-title {
+    position: absolute; /* Overlay the image */
+    bottom: 0;
+    width: 100%; /* Full width of the card */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+    color: white; /* Bright text for contrast */
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px 0;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease; /* Fade-in effect */
+}
+
+/* Show Title on Hover */
+.action-games-section .game-card:hover .game-title {
+    opacity: 1; /* Make the title visible */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .action-games-section .grid-section {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Smaller cards for mobile */
+    }
+
+    .action-games-section .game-card {
+        width: 120px;
+        height: 120px;
+    }
+}
